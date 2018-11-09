@@ -19,6 +19,7 @@ class App extends Component {
       this.setState({
         todos: newEntry
       })
+      event.target.value = ''
     }
   }
 
@@ -29,6 +30,14 @@ class App extends Component {
       { ...todos[index], done: !todos[index].done },
       ...todos.slice(index + 1)
     ]
+    this.setState({
+      todos: newArray
+    })
+  }
+
+  deleteListItem = index => {
+    const { todos } = this.state
+    const newArray = [...todos.slice(0, index), ...todos.slice(index + 1)]
     this.setState({
       todos: newArray
     })
@@ -45,7 +54,7 @@ class App extends Component {
               isDone={todoItem.done}
               text={todoItem.text}
               click={() => this.toggleDone(index)}
-              onKeyup={() => this.Enter}
+              deleteEl={() => this.deleteListItem(index)}
             />
           ))}
         </ul>

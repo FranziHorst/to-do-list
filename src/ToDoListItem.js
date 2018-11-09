@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import './ToDoListItem.css'
 
-export default class ToDoList extends Component {
+export default class ToDoListItem extends Component {
   render() {
-    const { text, click, isDone } = this.props
+    const { text, click, isDone, deleteEl } = this.props
 
     return (
-      <li onClick={click} className={isDone ? 'done' : ''}>
-        {text}
+      <li>
+        <span onClick={click} className={isDone ? 'done' : ''}>
+          {text}
+        </span>
+        <button onClick={deleteEl}>X</button>
       </li>
     )
   }
