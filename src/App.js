@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import ToDoListItem from './ToDoListItem'
 import Input from './Input'
+import Counter from './Counter'
 
 console.clear()
 
@@ -43,9 +44,14 @@ class App extends Component {
     })
   }
 
+  counterToDo = () => {
+    return this.state.todos.filter(item => item.done).length
+  }
+
   render() {
     return (
       <div className="layout">
+        <Counter num={this.counterToDo()} />
         <Input keyupfunction={this.addToDoArray} />
         <ul>
           {this.state.todos.map((todoItem, index) => (

@@ -10,7 +10,7 @@ export default class ToDoListItem extends Component {
         <span onClick={click} className={isDone ? 'done' : ''}>
           {text}
         </span>
-        <button onClick={deleteEl}>X</button>
+        <button onClick={deleteEl}>&times;</button>
       </li>
     )
   }
