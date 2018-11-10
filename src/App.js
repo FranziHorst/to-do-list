@@ -51,19 +51,27 @@ class App extends Component {
   render() {
     return (
       <div className="layout">
-        <Counter num={this.counterToDo()} />
-        <Input keyupfunction={this.addToDoArray} />
-        <ul>
-          {this.state.todos.map((todoItem, index) => (
-            <ToDoListItem
-              key={index}
-              isDone={todoItem.done}
-              text={todoItem.text}
-              click={() => this.toggleDone(index)}
-              deleteEl={() => this.deleteListItem(index)}
-            />
-          ))}
-        </ul>
+        <main className="container">
+          <header>
+            <Counter num={this.counterToDo()} />
+          </header>
+          <section>
+            <Input keyupfunction={this.addToDoArray} />
+          </section>
+          <section className="listContainer">
+            <ul>
+              {this.state.todos.map((todoItem, index) => (
+                <ToDoListItem
+                  key={index}
+                  isDone={todoItem.done}
+                  text={todoItem.text}
+                  click={() => this.toggleDone(index)}
+                  deleteEl={() => this.deleteListItem(index)}
+                />
+              ))}
+            </ul>
+          </section>
+        </main>
       </div>
     )
   }

@@ -6,11 +6,13 @@ export default class ToDoListItem extends Component {
     const { text, click, isDone, deleteEl } = this.props
 
     return (
-      <li>
+      <li className="listItem">
         <span onClick={click} className={isDone ? 'done' : ''}>
           {text}
         </span>
-        <button onClick={deleteEl}>&times;</button>
+        <button className="deleteButton" onClick={deleteEl}>
+          &times;
+        </button>
       </li>
     )
   }
