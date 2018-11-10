@@ -8,16 +8,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(30deg, #7f7fd5, #86a8e7, #91eae4);
+  background: linear-gradient(45deg, #0d2843 155px, #2980b9);
 }
 
 .container {
   background: white;
-  max-width: 400px;
+  width: 300px;
   min-height: 50vh;
   margin: auto;
   border-radius: 10px;
   padding: 15px;
+  position: absolute;
 }
 
 header {
@@ -42,4 +43,12 @@ section {
 ul {
   margin: 0;
   padding: 0;
+}
+
+.styleEl {
+  width: 436px;
+  position: relative;
+  height: 436px;
+  background: #ffcc00;
+  border-radius: 29% 71% 22% 78% / 57% 72% 28% 43%;
 }

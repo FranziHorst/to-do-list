@@ -51,6 +51,7 @@ class App extends Component {
   render() {
     return (
       <div className="layout">
+        <div className="styleEl" />
         <main className="container">
           <header>
             <Counter num={this.counterToDo()} />

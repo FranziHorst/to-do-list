@@ -5,7 +5,7 @@ export default class Input extends Component {
     return (
       <input
         type="text"
-        placeholder="Insert Text"
+        placeholder="Add your To Do"
         onKeyUp={event => {
           this.props.keyupfunction(event)
         }}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .ToDoList {
   display: flex;
   justify-content: center;
@@ -5,19 +7,21 @@
 }
 
 .done {
-  color: grey;
+  color: #0080bc91;
   text-decoration: line-through;
 }
 
 .deleteButton {
-  background: rgb(255, 255, 255);
+  background: #006194;
+  color: white;
   margin-left: auto;
   border: 0;
   border-radius: 5px;
 }
 
 .deleteButton:hover {
-  background: rgb(7, 118, 133);
+  background: #ececec;
+  color: #006194;
 }
 
 input[type='text'] {
@@ -32,13 +36,13 @@ input[type='text'] {
   align-items: flex-end;
   font-family: 'Roboto';
   font-size: 14px;
-  width: 300px;
-  background: #91eae4;
+  width: 290px;
+  background: #ffcc00;
   margin-bottom: 10px;
   padding: 5px;
   border-radius: 5px;
 }
 
 .listItem:nth-child(even) {
-  background: #dedef0;
+  background: #ebe1d3;
 }
