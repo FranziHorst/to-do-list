@@ -8,7 +8,7 @@ console.clear()
 
 class App extends Component {
   state = {
-    todos: []
+    todos: this.load()
   }
 
   addToDoArray = event => {
@@ -60,7 +60,20 @@ class App extends Component {
     ))
   }
 
+  save() {
+    localStorage.setItem('todo-app--todos', JSON.stringify(this.state.todos))
+  }
+
+  load() {
+    try {
+      return JSON.parse(localStorage.getItem('todo-app--todos')) || []
+    } catch (err) {
+      return []
+    }
+  }
+
   render() {
+    this.save()
     return (
       <div className="layout">
         <div className="styleEl" />
