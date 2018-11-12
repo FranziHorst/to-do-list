@@ -48,6 +48,18 @@ class App extends Component {
     return this.state.todos.filter(item => item.done).length
   }
 
+  createToDoList() {
+    return this.state.todos.map((todoItem, index) => (
+      <ToDoListItem
+        key={index}
+        isDone={todoItem.done}
+        text={todoItem.text}
+        click={() => this.toggleDone(index)}
+        deleteEl={() => this.deleteListItem(index)}
+      />
+    ))
+  }
+
   render() {
     return (
       <div className="layout">
@@ -60,17 +72,7 @@ class App extends Component {
             <Input keyupfunction={this.addToDoArray} />
           </section>
           <section className="listContainer">
-            <ul>
-              {this.state.todos.map((todoItem, index) => (
-                <ToDoListItem
-                  key={index}
-                  isDone={todoItem.done}
-                  text={todoItem.text}
-                  click={() => this.toggleDone(index)}
-                  deleteEl={() => this.deleteListItem(index)}
-                />
-              ))}
-            </ul>
+            <ul>{this.createToDoList()}</ul>
           </section>
         </main>
       </div>
