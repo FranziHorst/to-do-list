@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import uid from 'uid'
 import './App.css'
 import ToDoListItem from './ToDoListItem'
 import Input from './Input'
 import Counter from './Counter'
+import Seperator from './Seperator'
 
 console.clear()
 
@@ -14,7 +16,7 @@ class App extends Component {
   addToDoArray = event => {
     if (event.key === 'Enter') {
       const newEntry = [
-        { text: event.target.value, done: false },
+        { text: event.target.value, done: false, id: uid() },
         ...this.state.todos
       ]
       this.setState({
@@ -24,8 +26,9 @@ class App extends Component {
     }
   }
 
-  toggleDone = index => {
+  toggleDone = id => {
     const { todos } = this.state
+    const index = todos.findIndex(todo => todo.id === id)
     const newArray = [
       ...todos.slice(0, index),
       { ...todos[index], done: !todos[index].done },
@@ -36,8 +39,9 @@ class App extends Component {
     })
   }
 
-  deleteListItem = index => {
+  deleteListItem = id => {
     const { todos } = this.state
+    const index = todos.findIndex(todo => todo.id === id)
     const newArray = [...todos.slice(0, index), ...todos.slice(index + 1)]
     this.setState({
       todos: newArray
@@ -46,18 +50,6 @@ class App extends Component {
 
   counterToDo = () => {
     return this.state.todos.filter(item => item.done).length
-  }
-
-  createToDoList() {
-    return this.state.todos.map((todoItem, index) => (
-      <ToDoListItem
-        key={index}
-        isDone={todoItem.done}
-        text={todoItem.text}
-        click={() => this.toggleDone(index)}
-        deleteEl={() => this.deleteListItem(index)}
-      />
-    ))
   }
 
   save() {
@@ -72,6 +64,34 @@ class App extends Component {
     }
   }
 
+  renderOpenTodos() {
+    return this.state.todos
+      .filter(todo => !todo.done)
+      .map(todo => (
+        <ToDoListItem
+          key={todo.id}
+          text={todo.text}
+          isDone={todo.done}
+          click={() => this.toggleDone(todo.id)}
+          deleteEl={() => this.deleteListItem(todo.id)}
+        />
+      ))
+  }
+
+  renderDoneTodos() {
+    return this.state.todos
+      .filter(todo => todo.done)
+      .map(todo => (
+        <ToDoListItem
+          key={todo.id}
+          text={todo.text}
+          isDone={todo.done}
+          click={() => this.toggleDone(todo.id)}
+          deleteEl={() => this.deleteListItem(todo.id)}
+        />
+      ))
+  }
+
   render() {
     this.save()
     return (
@@ -84,8 +104,12 @@ class App extends Component {
           <section>
             <Input keyupfunction={this.addToDoArray} />
           </section>
+
           <section className="listContainer">
-            <ul>{this.createToDoList()}</ul>
+            <Seperator text="TODO" />
+            {this.renderOpenTodos()}
+            <Seperator text="DONE" />
+            {this.renderDoneTodos()}
           </section>
         </main>
       </div>
