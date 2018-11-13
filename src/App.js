@@ -1,12 +1,46 @@
 import React, { Component } from 'react'
 import uid from 'uid'
-import './App.css'
 import ToDoListItem from './ToDoListItem'
 import Input from './Input'
 import Counter from './Counter'
 import Seperator from './Seperator'
+import styled from 'styled-components'
 
 console.clear()
+
+const Layout = styled.div`
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #0d2843 155px, #2980b9);
+`
+
+const StyleEl = styled.div`
+  width: 436px;
+  position: relative;
+  height: 436px;
+  background: #ffcc00;
+  border-radius: 29% 71% 22% 78% / 57% 72% 28% 43%;
+`
+
+const Container = styled.main`
+  background: white;
+  width: 300px;
+  min-height: 50vh;
+  margin: auto;
+  border-radius: 10px;
+  padding: 15px;
+  position: absolute;
+`
+
+const ListContainer = styled.section`
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+`
 
 class App extends Component {
   state = {
@@ -95,9 +129,9 @@ class App extends Component {
   render() {
     this.save()
     return (
-      <div className="layout">
-        <div className="styleEl" />
-        <main className="container">
+      <Layout>
+        <StyleEl />
+        <Container>
           <header>
             <Counter num={this.counterToDo()} />
           </header>
@@ -105,14 +139,14 @@ class App extends Component {
             <Input keyupfunction={this.addToDoArray} />
           </section>
 
-          <section className="listContainer">
+          <ListContainer className="listContainer">
             <Seperator text="TODO" />
             {this.renderOpenTodos()}
             <Seperator text="DONE" />
             {this.renderDoneTodos()}
-          </section>
-        </main>
-      </div>
+          </ListContainer>
+        </Container>
+      </Layout>
     )
   }
 }
