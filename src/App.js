@@ -42,6 +42,10 @@ const ListContainer = styled.section`
   margin: 0.5rem;
 `
 
+const Headline = styled.header`
+  text-align: center;
+`
+
 class App extends Component {
   state = {
     todos: this.load()
@@ -132,14 +136,13 @@ class App extends Component {
       <Layout>
         <StyleEl />
         <Container>
-          <header>
+          <Headline>
             <Counter num={this.counterToDo()} />
-          </header>
+          </Headline>
           <section>
             <Input keyupfunction={this.addToDoArray} />
           </section>
-
-          <ListContainer className="listContainer">
+          <ListContainer>
             <Seperator text="TODO" />
             {this.renderOpenTodos()}
             <Seperator text="DONE" />

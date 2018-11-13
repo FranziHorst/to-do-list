@@ -7,12 +7,4 @@ export default createGlobalStyle`
 body {
   margin: 0;
 }
-
-header {
-  text-align: center;
-}
-
-section {
-  font-size: 1.25rem;
-}
 `
