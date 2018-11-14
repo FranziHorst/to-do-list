@@ -11,14 +11,21 @@ const InputEl = styled.input`
 `
 
 export default class Input extends Component {
+  handleKeyUp = event => {
+    const input = event.target
+    if (event.key === 'Enter') {
+      this.props.onEnter(input.value)
+      input.value = ''
+      input.focus()
+    }
+  }
+
   render() {
     return (
       <InputEl
         type="text"
         placeholder="Add your To Do"
-        onKeyUp={event => {
-          this.props.keyupfunction(event)
-        }}
+        onKeyUp={this.handleKeyUp}
       />
     )
   }

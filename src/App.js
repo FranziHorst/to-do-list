@@ -5,6 +5,7 @@ import Input from './Input'
 import Counter from './Counter'
 import Seperator from './Seperator'
 import ToggleButton from './ToggleButton'
+import ProgressBar from './ProgressBar'
 import styled from 'styled-components'
 
 console.clear()
@@ -52,17 +53,10 @@ class App extends Component {
     todos: this.load()
   }
 
-  addToDoArray = event => {
-    if (event.key === 'Enter') {
-      const newEntry = [
-        { text: event.target.value, done: false, id: uid() },
-        ...this.state.todos
-      ]
-      this.setState({
-        todos: newEntry
-      })
-      event.target.value = ''
-    }
+  addToDo = text => {
+    this.setState({
+      todos: [{ text, done: false, id: uid() }, ...this.state.todos]
+    })
   }
 
   toggleDone = id => {
@@ -131,17 +125,24 @@ class App extends Component {
       ))
   }
 
+  determineProgress() {
+    const { todos } = this.state
+    const doneTodos = todos.filter(t => t.done)
+    return doneTodos.length / todos.length
+  }
+
   render() {
     this.save()
     return (
       <Layout>
         <StyleEl />
         <Container>
+          <ProgressBar percentage={this.determineProgress()} />
           <Headline>
             <Counter num={this.counterToDo()} />
           </Headline>
           <section>
-            <Input keyupfunction={this.addToDoArray} />
+            <Input onEnter={this.addToDo} />
           </section>
           <ListContainer>
             <Seperator text="TODO" />

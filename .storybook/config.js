@@ -1,7 +1,11 @@
-import { configure } from '@storybook/react';
+import { configure, setAddon } from '@storybook/react'
+import { addDecorator } from '@storybook/react'
+import { withKnobs } from '@storybook/addon-knobs'
 
 function loadStories() {
-  require('../src/stories');
+  require('../src/stories')
 }
 
-configure(loadStories, module);
+addDecorator(withKnobs)
+
+configure(loadStories, module)
