@@ -4,6 +4,7 @@ import ToDoListItem from './ToDoListItem'
 import Input from './Input'
 import Counter from './Counter'
 import Seperator from './Seperator'
+import ToggleButton from './ToggleButton'
 import styled from 'styled-components'
 
 console.clear()
@@ -148,6 +149,12 @@ class App extends Component {
             <Seperator text="DONE" />
             {this.renderDoneTodos()}
           </ListContainer>
+          <ToggleButton
+            defaultText="Hello"
+            alternativeText="Goodbye"
+            onClick={() => console.log('click')}
+            isDefault={true}
+          />
         </Container>
       </Layout>
     )
