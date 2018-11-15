@@ -15,8 +15,20 @@ const ToggleButtonEl = styled.button`
 `
 
 export default class ToggleButton extends Component {
+  static getDerivedStateFromProps(props, state) {
+    const isTheSame = state.lastPropsIsDefault === props.isDefault
+
+    return isTheSame
+      ? null
+      : {
+          isDefault: props.isDefault,
+          lastPropsIsDefault: props.isDefault
+        }
+  }
+
   state = {
-    isDefault: this.props.isDefault
+    isDefault: this.props.isDefault == null ? true : this.props.isDefault,
+    lastPropsIsDefault: this.props.isDefault
   }
 
   handleToggle = () => {
