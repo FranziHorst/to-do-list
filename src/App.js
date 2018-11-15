@@ -6,6 +6,7 @@ import Counter from './Counter'
 import Seperator from './Seperator'
 import ToggleButton from './ToggleButton'
 import ProgressBar from './ProgressBar'
+import TextArea from './TextArea'
 import styled from 'styled-components'
 
 console.clear()
@@ -156,6 +157,7 @@ class App extends Component {
             onClick={() => console.log('click')}
             isDefault={true}
           />
+          <TextArea />
         </Container>
       </Layout>
     )

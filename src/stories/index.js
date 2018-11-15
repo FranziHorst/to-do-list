@@ -11,54 +11,48 @@ import ProgressBar from '../ProgressBar'
 import GlobalStyle from '../GlobalStyle'
 import { text, boolean, number } from '@storybook/addon-knobs'
 
-storiesOf('ToDoListItem', module)
-  .add('with short text', () => (
-    <React.Fragment>
-      <ToDoListItem
-        text="Hello world"
-        isDone={false}
-        click={action('toggle')}
-        deleteEl={action('delete')}
-      />
-      <GlobalStyle />
-    </React.Fragment>
-  ))
-  .add('with long text', () => (
-    <React.Fragment>
-      <ToDoListItem
-        text="Hello world my Name is Lisa Popaworth"
-        isDone={false}
-        click={action('toggle')}
-        deleteEl={action('delete')}
-      />
-      <GlobalStyle />
-    </React.Fragment>
-  ))
-  .add('with done text', () => (
-    <React.Fragment>
-      <ToDoListItem
-        text="Have a great day"
-        isDone={true}
-        click={action('toggle')}
-        deleteEl={action('delete')}
-      />
-      <GlobalStyle />
-    </React.Fragment>
-  ))
+storiesOf('ToDoListItem', module).add('with short text', () => (
+  <React.Fragment>
+    <ToDoListItem
+      text={text('Display text', 'Hello World')}
+      isDone={boolean('False', false)}
+      click={action('toggle')}
+      deleteEl={action('delete')}
+    />
 
-storiesOf('Seperator', module)
-  .add('with short text', () => <Seperator text="Hello world" />)
-  .add('with long text', () => (
-    <Seperator text={text('Display text', 'Hello World')} />
-  ))
+    <ToDoListItem
+      text="Hello world my Name is Lisa Popaworth"
+      isDone={false}
+      click={action('toggle')}
+      deleteEl={action('delete')}
+    />
+    <ToDoListItem
+      text="Have a great day"
+      isDone={true}
+      click={action('toggle')}
+      deleteEl={action('delete')}
+    />
+    <GlobalStyle />
+  </React.Fragment>
+))
 
-storiesOf('ProgressBar', module)
-  .add('20 percentage', () => <ProgressBar percentage={0.2} />)
-  .add('50 percentage', () => <ProgressBar percentage={0.5} />)
-  .add('70 percentage', () => <ProgressBar percentage={0.7} />)
-  .add('100 percentage', () => <ProgressBar percentage={1} />)
+storiesOf('Seperator', module).add('edit long text', () => (
+  <Seperator text={text('Seperator text', 'Hello World')} />
+))
 
-storiesOf('Counter', module).add('counter headline', () => <Counter />)
+storiesOf('ProgressBar', module).add('0% / 20% / 50% / 70% / 100%', () => (
+  <React.Fragment>
+    <ProgressBar percentage={0} />
+    <ProgressBar percentage={0.2} />
+    <ProgressBar percentage={0.5} />
+    <ProgressBar percentage={0.7} />
+    <ProgressBar percentage={1} />
+  </React.Fragment>
+))
+
+storiesOf('Counter', module).add('counter headline', () => (
+  <Counter num={number('Label, defaultNumber)')} />
+))
 
 storiesOf('Input', module).add('input', () => (
   <Input onEnter={action('Enter is pressed')} />
@@ -69,13 +63,13 @@ storiesOf('ToggleButton', module)
     <ToggleButton
       defaultText="default text"
       onClick={action('toggle')}
-      isDefault={true}
+      isDefault={boolean('True', true)}
     />
   ))
   .add('Togglebutton with alternative Text', () => (
     <ToggleButton
       alternativeText="alt. text"
       onClick={action('toggle')}
-      isDefault={false}
+      isDefault={boolean('False', false)}
     />
   ))
