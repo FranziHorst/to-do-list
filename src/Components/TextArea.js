@@ -11,7 +11,7 @@ export default class TextArea extends Component {
   render() {
     return (
       <div>
-        <Textarea />
+        <Textarea placeholder="Type a Text here" />
       </div>
     )
   }
